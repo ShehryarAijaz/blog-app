@@ -119,12 +119,13 @@ export class Service{
         }
     }
 
-    getfilePreview(fileID) {
-        return this.bucket.getFilePreview(
+    getFileView(fileID) {
+        return this.bucket.getFileView(
             config.appwriteBucketID,
             fileID
         )
     }
+
 }
 
 const service = new Service()

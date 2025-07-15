@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createAccount as authSignup } from "../appwrite/config.service.js";
+// import authService from "../appwrite/auth.service.js"
 import { Button, Input, Logo } from "../components/index.js";
 import authService from "../appwrite/auth.service.js";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { login } from "../store/authSlice.js";
 
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState("");
 
   const signup = async (data) => {
+    console.log("Form data:", data);
     setError("");
     try {
       const userData = await authService.createAccount(data);
@@ -52,7 +54,7 @@ function Signup() {
                 placeholder="Enter your name"
                 type="text"
                 {...register("name", {
-                  required: true,
+                  required: "Name is required",
                   validate: {
                     matchPattern: (value) => {
                       return (
@@ -63,12 +65,14 @@ function Signup() {
                   },
                 })}
               />
+              {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+              
               <Input
                 label="Email"
                 placeholder="Enter your email"
                 type="email"
                 {...register("email", {
-                  required: true,
+                  required: "Email is required",
                   validate: {
                     matchPattern: (value) => {
                       return (
@@ -80,12 +84,14 @@ function Signup() {
                   },
                 })}
               />
+              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+              
               <Input
                 label="Password"
                 placeholder="Enter your password"
                 type="password"
                 {...register("password", {
-                  required: true,
+                  required: "Password is required",
                   validate: {
                     matchPattern: (value) => {
                       return (
@@ -98,7 +104,11 @@ function Signup() {
                   },
                 })}
               />
-              <Button type="submit" className="w-full">
+              {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+              
+              <Button
+                type="submit"
+                className="w-full">
                 Signup
               </Button>
             </div>

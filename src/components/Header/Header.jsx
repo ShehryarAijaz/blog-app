@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Header() {
   // Get the authentication status from the Redux store
   // This will determine which navigation items are active
-  const authStatus = useSelector((state) => {
-    state.auth.status;
-  });
+  const authStatus = useSelector((state) => state.auth.status);
 
   const navigate = useNavigate();
 

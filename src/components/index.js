@@ -8,7 +8,10 @@ import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import PostCard from "./PostCard.jsx";
 import RTE from "./RTE.jsx";
-import PostForm from "./PostForm.jsx/PostForm.jsx";
+import PostForm from "./PostForm/PostForm.jsx";
+import AuthLayout from "./AuthLayout.jsx";
+import Button from "./Button.jsx";
+import Input from "./Input.jsx";
 
 export {Header,
         Footer,
@@ -20,4 +23,7 @@ export {Header,
         Signup,
         PostCard,
         RTE,
-        PostForm};
+        PostForm,
+        AuthLayout,
+        Button,
+        Input};

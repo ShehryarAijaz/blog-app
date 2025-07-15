@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login as authLogin } from "../appwrite/config.service.js";
+import { login as authLogin } from "../store/authSlice.js";
 import { Button, Input, Logo } from "../components/index.js";
 import authService from "../appwrite/auth.service.js";
 import { useDispatch } from "react-redux";
